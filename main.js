@@ -1,46 +1,53 @@
-let string = "II * IV";
+let string = "10 * 5"
 
-console.log("TEST: Полученная строка:",string);
-// let sum;
-// let arr = string.match(/\.\d+|\d+\.?\d*|./g)
-let arr = string.split(" ") //|| string.split("+"); //|| string.split("-") || string.split("*")  || string.split("/")  || string.split("");
-let a = arr[0];
-let operator = (arr[1]);
-let b = arr[2];
 
-console.log("TEST: Полученный массив:",arr);
-console.log("-------------------------------------");
-// a = Number(arr[0])
-// console.log(a)
-// b = Number(arr[2])
-// console.log(b)
+function calculator () {
 
-if ( parseInt(a) == Number(arr[0]) && parseInt(b) == Number(arr[2])) {
-	oCalculator();
-} else if ( true == !Number(arr[0]) && true == !Number(arr[2])) {
-  	rimCalculator();
-} else {
-	console.log("Ошибка, введите данные правильно");
+
+
+	let arr = string.split(" ") //|| string.split("+"); //|| string.split("-") || string.split("*")  || string.split("/")  || string.split("");
+	if (arr.length > 3) {
+		throw 'Ошибка';
+	} else {
+	let a = arr[0];
+	let operator = (arr[1]);
+	let b = arr[2];
+
+
+	if ( parseInt(a) == Number(arr[0]) && parseInt(b) == Number(arr[2])) {
+		oCalculator()
+		return oCalculator();
+	} else if ( true == !Number(arr[0]) && true == !Number(arr[2])) {
+	  	rimCalculator()
+		return rimCalculator();
+	} else {
+		throw 'Ошибка';
+	} 
+	
+
+function oCalculator() { // Функция обычного калькулятора !!!!!!РАБОТАЕТ!!!!
+	if ( a > 10 || a == 0 || b > 10 || b == 0) {
+		throw 'Ошибка';		
+		} else {
+			let sum1=" ";			
+			switch (operator) { // Обычный калькулятор целых чисел
+				case "+" : sum1 = parseInt(a) + parseInt(b); break;
+				case "-" : sum1 = parseInt(a) - parseInt(b); break;
+				case "*" : sum1 = parseInt(a) * parseInt(b); break;
+				case "/" : sum1 = parseInt(a) / parseInt(b); break;
+				default : throw 'Ошибка';
+				}
+			sum1=Math.floor(sum1)
+			sum1= String(sum1)
+			return sum1;
+			}
 }
 
 
-function oCalculator() { // Функция обычного калькулятора
-	if (a == 0 || b == 0) {
-		console.log('Ошибка: A или B не может быть "0"!');
-		return;
-	} else {
-		switch (operator) { // Обычный калькулятор целых чисел
-			case "+" : sum1 = parseInt(a) + parseInt(b); break;
-			case "-" : sum1 = parseInt(a) - parseInt(b); break;
-			case "*" : sum1 = parseInt(a) * parseInt(b); break;
-			case "/" : sum1 = parseInt(a) / parseInt(b); break;
-			default : console.log("Ошибка, неверный знак операции для вычисления!");
-			return;}
-		}
-	console.log("Запустился обычный калькулятор! Результат:",parseInt(sum1));
-	}
 
 function rimCalculator() { // Функция римского калькулятора
+	
+	let rimSignA=" ";
 	switch (a) { // Преобразование римских цифр в обычные для переменной a
 		case "I":    rimSignA = 1; break;
 		case "II":   rimSignA = 2; break;
@@ -52,8 +59,10 @@ function rimCalculator() { // Функция римского калькулят
 		case "VIII": rimSignA = 8; break;
 		case "IX":   rimSignA = 9; break;
 		case "X":    rimSignA = 10; break;
-		default : console.log("Ошибка, укажите правильный первый(a) римский знак"); return;
+		default : throw 'Ошибка';
 		};
+
+		let rimSignB = " ";
 	switch (b) { // Преобразование римских цифр в обычные для переменной b
 		case "I":   rimSignB= 1; break;
 		case "II":  rimSignB = 2; break;
@@ -65,17 +74,25 @@ function rimCalculator() { // Функция римского калькулят
 		case "VIII":rimSignB = 8; break;
 		case "IX":  rimSignB = 9; break;
 		case "X":   rimSignB = 10; break;
-		default : console.log("Ошибка, укажите правильный второй(b) римский знак"); return;
+		default : throw 'Ошибка';
 		};
+
+
+
+		let sum2=" ";
 	switch (operator) { // Rалькулятор римских цифр
 		case "+" : sum2 = rimSignA + rimSignB; break;
 		case "-" : sum2 = rimSignA - rimSignB;  break;
 		case "*" : sum2 = rimSignA * rimSignB; break;
 		case "/" : sum2 = rimSignA / rimSignB; break;
-		default : console.log(	"Ошибка, неверный знак операции для вычисления!"); return;
+		default : throw 'Ошибка';
 		}
+		sum2=Math.floor(sum2)
+
+		let rimResult=" ";
 	if (sum2 < 1) {
-		rimResult = '"';
+		rimResult = "";
+		return rimResult;
 	} else {
 	switch (sum2) { // Преобразование обычных цифр в римские
 		case 1		:rimResult = "I";break;
@@ -178,8 +195,21 @@ function rimCalculator() { // Функция римского калькулят
 		case 98		:rimResult = "XCVIII";break;
 		case 99		:rimResult = "XCIX";break;
 		case 100		:rimResult = "C";break;
-		default : console.log("Ошибка, укажите правильный второй(b) римский знак");return;
+		default : throw 'Ошибка';
 		};
+	return rimResult;
 	}
-console.log("Запустился римский калькулятор! Результат:",rimResult);
+	
 }
+
+}
+
+}
+calculator()
+
+
+
+
+console.log('Результат после выполнения "function calculator":', calculator())
+ console.log(typeof calculator())
+
