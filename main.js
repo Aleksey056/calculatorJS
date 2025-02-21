@@ -1,4 +1,4 @@
-let string = "10 * 5"
+let string = "II / X"
 
 
 function calculator () {
@@ -201,9 +201,7 @@ function rimCalculator() { // Функция римского калькулят
 	}
 	
 }
-
 }
-
 }
 calculator()
 
